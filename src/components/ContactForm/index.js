@@ -1,7 +1,13 @@
-import {useRef} from 'react'
+import {useRef, useState} from 'react'
 
 function ContactForm(props){
     const {addNewContact} = props
+
+    const[formData, setFormData] = useState({
+        name : '',
+        email: '',
+        phone: '',
+    })
 
     const nameRef = useRef('')
     const emailRef = useRef('')
@@ -10,14 +16,27 @@ function ContactForm(props){
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const newContact = {
-            name: nameRef.current.value,
-            email : emailRef.current.value,
-            phone : phoneRef.current.value
-        }
+        // const newContact = {
+        //     name: nameRef.current.value,
+        //     email : emailRef.current.value,
+        //     phone : phoneRef.current.value
+        // }
 
-        console.log(newContact);
-        addNewContact(newContact)
+        addNewContact(formData)
+        setFormData({
+            name : '',
+            email: '',
+            phone: '',
+        })
+       
+
+    }
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name] : e.target.value
+        });
     }
 
     return (
@@ -27,17 +46,23 @@ function ContactForm(props){
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name: </label>
-                    <input type='text' ref={nameRef}/>
+                    <input type='text' value={formData.name} onChange=
+                    {handleChange} name='name'></input>
+                    {/* <input type='text' ref={nameRef}/> */}
                 </div>
 
                 <div>
                     <label>Email: </label>
-                    <input type='text' ref={emailRef}/>
+                    <input type='text' value={formData.email} onChange=
+                    {handleChange} name='email'></input>
+                    {/* <input type='text' ref={emailRef}/> */}
                 </div>
 
                 <div>
                     <label>Phone: </label>
-                    <input type='text' ref={phoneRef}/>
+                    <input type='text' value={formData.phone} onChange=
+                    {handleChange} name='phone'></input>
+                    {/* <input type='text' ref={phoneRef}/> */}
                 </div>
 
                 <button>Create </button>
