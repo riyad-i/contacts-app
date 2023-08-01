@@ -19,7 +19,7 @@ function ContactsList(props){
 
             <>
                 {contacts ? (
-                    contacts.map(contact => <ContactItem key={contact.id} contact={contact} />)
+                    contacts.map(contact => <ContactItem key={contact.id} contact={contact} />) //or {...contact}
                 ): <h3>No contacts found</h3>
 
                 }

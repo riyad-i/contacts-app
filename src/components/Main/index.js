@@ -1,5 +1,6 @@
 import styles from './Main.module.css'
 import ContactsList from '../ContactsList';
+import ContactForm from '../ContactForm';
 
 
 function Main(props){
@@ -10,7 +11,7 @@ function Main(props){
             </section>
 
             <section className={styles.sec2}>
-                <h2>Contact Form</h2>
+                <ContactForm/>
             </section>
         </main>
     )
