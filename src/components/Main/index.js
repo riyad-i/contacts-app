@@ -1,13 +1,25 @@
 import styles from './Main.module.css'
 import ContactsList from '../ContactsList';
 import ContactForm from '../ContactForm';
+import {useState, useEffect} from 'react'
 
 
 function Main(props){
+    const [contacts, setContacts] = useState(null)
+
+    useEffect( () => {
+        const fetchData = async() => {
+            const res = await fetch('https://jsonplaceholder.typicode.com/users')
+            const data = await res.json()
+            setContacts(data)
+        }
+        fetchData()
+    },[])
+
     return (
         <main className={styles.container}>
             <section className={styles.sec1}>
-                <ContactsList/>
+                <ContactsList contacts={contacts}/>
             </section>
 
             <section className={styles.sec2}>
