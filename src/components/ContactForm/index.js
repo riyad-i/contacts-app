@@ -1,6 +1,8 @@
 import {useRef} from 'react'
 
 function ContactForm(props){
+    const {addNewContact} = props
+
     const nameRef = useRef('')
     const emailRef = useRef('')
     const phoneRef = useRef('')
@@ -9,12 +11,13 @@ function ContactForm(props){
         e.preventDefault()
 
         const newContact = {
-            name:nameRef.current.value,
+            name: nameRef.current.value,
             email : emailRef.current.value,
             phone : phoneRef.current.value
         }
 
         console.log(newContact);
+        addNewContact(newContact)
     }
 
     return (

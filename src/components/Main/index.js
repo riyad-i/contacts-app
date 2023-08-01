@@ -16,6 +16,12 @@ function Main(props){
         fetchData()
     },[])
 
+
+    const addNewContact = (newContact) => {
+        setContacts([...contacts,newContact])
+    }
+
+
     return (
         <main className={styles.container}>
             <section className={styles.sec1}>
@@ -23,7 +29,7 @@ function Main(props){
             </section>
 
             <section className={styles.sec2}>
-                <ContactForm/>
+                <ContactForm addNewContact={addNewContact}/>
             </section>
         </main>
     )
