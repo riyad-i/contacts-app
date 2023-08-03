@@ -11,7 +11,6 @@
 
 export default function contactsReducer(state, action) {
     const {type, payload} = action;
-
     switch(type) {
 
         case 'fetched_data':
@@ -24,6 +23,13 @@ export default function contactsReducer(state, action) {
                 ...state,
                  payload
                 ]
+
+        case 'delete_contact':
+            const copyState = [...state]
+            const newArr = copyState.filter(item => item.id !== payload)
+            return [
+                ...newArr
+            ]
 
         default:
             return []
