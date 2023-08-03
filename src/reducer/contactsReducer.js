@@ -20,7 +20,10 @@ export default function contactsReducer(state, action) {
             ];
 
         case 'add_contact':
-            break
+            return [
+                ...state,
+                 payload
+                ]
 
         default:
             return []
