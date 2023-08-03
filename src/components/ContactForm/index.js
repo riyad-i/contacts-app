@@ -1,7 +1,11 @@
-import {useRef, useState} from 'react'
+import {useRef, useState, useContext} from 'react'
+import { ContactsContext } from '../../context/contactsContext'
+
 
 function ContactForm(props){
-    const {addNewContact} = props
+    const contactsCtx = useContext(ContactsContext)
+    const {addNewContact} = contactsCtx
+    // const {addNewContact} = props
 
     const[formData, setFormData] = useState({
         name : '',
@@ -9,9 +13,9 @@ function ContactForm(props){
         phone: '',
     })
 
-    const nameRef = useRef('')
-    const emailRef = useRef('')
-    const phoneRef = useRef('')
+    // const nameRef = useRef('')
+    // const emailRef = useRef('')
+    // const phoneRef = useRef('')
 
     const handleSubmit = (e) => {
         e.preventDefault()

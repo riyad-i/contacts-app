@@ -1,8 +1,11 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import ContactItem from "../ContactItem"
+import { ContactsContext } from '../../context/contactsContext'
 
 function ContactsList(props){
-    const contacts = props.contacts
+    // const contacts = props.contacts
+    const contactsCtx = useContext(ContactsContext)
+    const {contacts} = contactsCtx
     // const [contacts, setContacts] = useState(null)
 
     // useEffect( () => {
