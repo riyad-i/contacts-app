@@ -1,29 +1,39 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useReducer} from 'react'
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Main from './components/Main'
 import './App.css';
 import { ContactsContext } from './context/contactsContext';
+import contactsReducer from './reducer/contactsReducer';
+
+//contacts: global state
+// dispatch: function that will send a 'action' object to the reducer function 
+
+
 
 function App() {
-  const [contacts, setContacts] = useState(null)
+  // const [contacts, setContacts] = useState(null)
+  const [contacts, dispatch] = useReducer(contactsReducer, null);
 
     useEffect( () => {
         const fetchData = async() => {
             const res = await fetch('https://jsonplaceholder.typicode.com/users')
             const data = await res.json()
-            setContacts(data)
+            // setContacts(data)
+
+            //dispatching an action to the reducer function
+            dispatch({type : 'fetched_data', payload: data})
         }
         fetchData()
     },[])
 
 
-    const addNewContact = (newContact) => {
-        setContacts([...contacts,newContact])
-    }
+    // const addNewContact = (newContact) => {
+    //     setContacts([...contacts, newContact])
+    // }
 
   return (
-    <ContactsContext.Provider value={{contacts,addNewContact}}>
+    <ContactsContext.Provider value={{contacts, dispatch}}>
       <div className="">
         <Navbar/>
         <Header title="Contacts App"/>
