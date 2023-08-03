@@ -25,8 +25,8 @@ function ContactForm(props){
         //     email : emailRef.current.value,
         //     phone : phoneRef.current.value
         // }
-
-        addNewContact(formData)
+        const newContact = {...formData, id: new Date()}
+        addNewContact(newContact)
         setFormData({
             name : '',
             email: '',
